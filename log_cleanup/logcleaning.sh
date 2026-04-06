@@ -1,6 +1,8 @@
 #!/bin/zsh
 echo --------------------------- >> script_audit.logs
+echo --------------------------- >> suspect_list.txt
 date >> script_audit.logs
+date >> suspect_list.txt
 echo Errors: >> script_audit.logs
 mkdir -p processed_logs/ 2>> script_audit.logs
 mkdir -p quarantine/ 2>> script_audit.logs

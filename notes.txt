@@ -1,0 +1,9 @@
+Linux Synax Stuff
+
+if - end with fi
+for - end with done
+(()) - math, use + - * / < > 
+[[]] - conditional with if statmentes, for text or files
+$() - run command + save output
+-eq equal, -ne not equal, -gt (greater than) and -lt(less than) only for nums
+== equal for strings (!= for not equal), leading zeros make a difference

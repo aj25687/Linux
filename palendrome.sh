@@ -1,12 +1,20 @@
 #!/bin/zsh
-LINES=`wc -l "$1"  | tr -s " " | cut -d " " -f2`
+if [[ ! -f "$1" ]]; then
+    print "Error: File not found."
+    exit 1
+fi
+LINES=$(wc -l < "$1")
 print "Total Number of Lines : ${LINES}"
-for i in {1..${LINES}}; do
-    CONTENT=$(head -n $i $1 | tail -n 1 )
-    let CHARCOUNT=`echo ${CONTENT} | wc -c | tr -d " "`
-    REVERSED=$(echo -n "${CONTENT}" | rev)
-    #print ${REVERSED}
-    if(${CONTENT} -eq ${REVERSED}){
-        print 
-    }
+
+for (( i=1; i<=${LINES}; i++ )); do
+    CONTENT=$(head -n $i "$1" | tail -n 1)
+    if [[ -z "$CONTENT" ]]; then
+        continue
+    fi
+    REVERSED=$(echo -n "$CONTENT" | rev)
+    if [[ "$CONTENT" == "$REVERSED" ]]; then
+        print "Match: ${CONTENT} is a palindrome."
+    else
+        print "No Match: ${CONTENT}"
+    fi
 done
